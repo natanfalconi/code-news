@@ -24,4 +24,5 @@ pre {
     background-color: rgb(56, 74, 102);
     border-radius: 8px;
     padding: 8px;
+    overflow-x: auto;
 }

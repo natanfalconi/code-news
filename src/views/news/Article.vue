@@ -1,5 +1,5 @@
 <template>
-    <div class="sm:w-1/2 w-9/12 mx-auto my-20 min-h-screen">
+    <div class="sm:w-1/2 w-10/12 mx-auto my-20 min-h-screen">
         <div class="mt-20 mb-10">
             <h2 class="sm:text-5xl text-4xl mb-8 text-indigo-500 font-mono font-bold">
                 {{ article?.title }}
@@ -45,6 +45,9 @@ async function getArticle() {
 
 onMounted(() => {
     getArticle();
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 });
+
+
 </script>
   

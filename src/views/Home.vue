@@ -27,6 +27,7 @@ export default defineComponent({
 
         onMounted(() => {
             getListArticle()
+            window.scrollTo({ top: 0, behavior: "smooth" });
         })
 
         return {
@@ -40,7 +41,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="sm:w-1/2 w-9/12 mx-auto my-20 min-h-screen">
+    <div class="sm:w-1/2 w-10/12 mx-auto my-20 min-h-screen">
         <h1 class="sm:text-5xl text-4xl font-semibold text-indigo-400 font-mono">{{ titleBlog }}</h1>
 
         <article class="my-20" v-for="(article, index) in listArticle" :key="index">
