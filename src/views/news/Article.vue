@@ -4,15 +4,15 @@
             <h2 class="sm:text-5xl text-4xl mb-8 text-indigo-500 font-mono font-bold">
                 {{ article?.title }}
             </h2>
-            <div>
-                <img :src="article?.imagem_url" alt="imagem do artigo">
+            <div >
+                <img class="rounded-md" :src="article?.imagem_url" alt="imagem do artigo">
             </div>
-            <div class="mt-5 mb-7 text-gray-200 font-thin" v-html="article?.description"></div>
+            <div class="mt-5 mb-7 text-gray-100 font-thin" v-html="article?.description"></div>
 
             <div class="flex sm:items-end flex-col gap-1 font-mono">
                 <p class="text-blue-400">{{ article?.author?.name }}</p>
-                <span class="text-gray-200 text-sm"> {{ article?.author?.schooling }}</span>
-                <span class="text-gray-200 text-sm">
+                <span class="text-gray-100 text-sm"> {{ article?.author?.schooling }}</span>
+                <span class="text-gray-100 text-sm">
                     {{ article?.author?.description }}</span>
             </div>
         </div>

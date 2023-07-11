@@ -45,7 +45,7 @@ export default defineComponent({
 
         <article class="my-20" v-for="(article, index) in listArticle" :key="index">
             <h2 class="text-4xl font-semibold mb-5 font-mono text-indigo-500 ">{{ article.title }}</h2>
-            <p class="mb-5 text-gray-200 font-thin" v-html="article.description.substr(0, 300) + ' ...'"></p>
+            <p class="mb-5 text-gray-100 font-thin" v-html="article.description.substr(0, 300) + ' ...'"></p>
 
             <div class="flex sm:justify-end gap-3 mb-4 justify-start">
                 <a href="https://linkedin.com.br/in/natan-falconi"
@@ -55,7 +55,8 @@ export default defineComponent({
                 </a>
             </div>
 
-            <button class="block bg-red-600 rounded-full w-32 h-8 text-gray-200 font-mono font-bold uppercase"
+            <button
+                class="block bg-red-600 hover:opacity-90 rounded-full w-32 h-8 text-gray-100 font-mono font-bold uppercase"
                 @click="handleClick(article.id)">
                 Veja mais >
             </button>
