@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, onMounted, ref, defineEmits } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import useApi from "../services/UseApi";
 
@@ -9,7 +9,7 @@ export default defineComponent({
         const router = useRouter()
 
         const listArticle = ref([])
-        const titleBlog = "<code/News >"
+        
 
         const getListArticle = async () => {
             try {
@@ -32,7 +32,6 @@ export default defineComponent({
 
         return {
             listArticle,
-            titleBlog,
             handleClick
         }
     },
@@ -41,9 +40,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="sm:w-1/2 w-10/12 mx-auto my-20 min-h-screen">
-        <h1 class="sm:text-5xl text-4xl font-semibold text-indigo-400 font-mono">{{ titleBlog }}</h1>
-
+    <div class="sm:w-1/2 w-10/12 mx-auto my-10 min-h-screen">
         <article class="my-10" v-for="(article, index) in listArticle" :key="index">
             <div class="hover:shadow-sm py-8 px-4 hover:bg-slate-700 rounded-md transition duration-150 ease-out hover:ease-in">
 
