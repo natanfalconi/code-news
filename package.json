@@ -12,7 +12,8 @@
     "@supabase/supabase-js": "^2.26.0",
     "axios": "^1.4.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "workbox-precaching": "^7.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

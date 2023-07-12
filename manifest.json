@@ -2,13 +2,13 @@
 "name": "Code News - Tudo sobre tecncologia",
 "short_name": "Code News",
 "start_url": "https://code-news-blush.vercel.app/",
-"display": "standalone",
+"display": "fullscreen",
 "description": "blog de noticias sobre tecnologia",
 "lang": "português",
 "dir": "auto",
 "theme_color": "#334454",
 "background_color": "#334454",
-"orientation": "any",
+"orientation": "portrait-primary",
 "icons": [
     {
         "src": "https://www.pwabuilder.com/assets/icons/icon_512.png",
@@ -28,7 +28,7 @@
         "src": "https://www.pwabuilder.com/assets/screenshots/screen1.png",
         "sizes": "2880x1800",
         "type": "image/png",
-        "description": "A screenshot of the home page"
+        "description": "Print da tela"
     }
 ],
 "related_applications": [
@@ -37,7 +37,7 @@
         "url": "https://code-news-blush.vercel.app/"
     }
 ],
-"prefer_related_applications": false,
+"prefer_related_applications": true,
 "shortcuts": [
     {
         "name":"Code News",
