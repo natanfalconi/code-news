@@ -1,5 +1,5 @@
 <script>
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, defineEmits } from 'vue';
 import { useRouter } from 'vue-router';
 import useApi from "../services/UseApi";
 
@@ -19,9 +19,9 @@ export default defineComponent({
             }
         }
 
-        const handleClick = async (id) => {
+        const handleClick = async (article) => {
             router.push({
-                path: `/news/${id}`
+                path: `/news/${article.title.replace(/\s+/g, '-').toLowerCase()}`, query: { id: article.id }
             })
         }
 
@@ -35,32 +35,35 @@ export default defineComponent({
             titleBlog,
             handleClick
         }
-    }
+    },
 
-}) 
+})
 </script>
 
 <template>
     <div class="sm:w-1/2 w-10/12 mx-auto my-20 min-h-screen">
         <h1 class="sm:text-5xl text-4xl font-semibold text-indigo-400 font-mono">{{ titleBlog }}</h1>
 
-        <article class="my-20" v-for="(article, index) in listArticle" :key="index">
-            <h2 class="text-4xl font-semibold mb-5 font-mono text-indigo-500 ">{{ article.title }}</h2>
-            <p class="mb-5 text-gray-100 font-thin" v-html="article.description.substr(0, 300) + ' ...'"></p>
+        <article class="my-10" v-for="(article, index) in listArticle" :key="index">
+            <div class="hover:shadow-sm py-8 px-4 hover:bg-slate-700 rounded-md transition duration-150 ease-out hover:ease-in">
 
-            <div class="flex sm:justify-end gap-3 mb-4 justify-start">
-                <a href="https://linkedin.com.br/in/natan-falconi"
-                    class="transition duration-150 border-b-4 border-transparent hover:border-blue-500" target="_blank">
-                    <p class="text-blue-400 font-mono p-2 rounded-md">{{ article?.author?.name }} | {{ new
-                        Date(article?.created_at).toLocaleDateString() }}</p>
-                </a>
+                <h2 class="text-4xl cursor-pointer font-semibold mb-5 font-mono text-indigo-500 hover:text-blue-400 transition duration-150" @click="handleClick(article)">{{ article.title }}</h2>
+                <p class="mb-5 text-gray-100 font-thin" v-html="article.description.substr(0, 200) + ' ...'"></p>
+
+                <div class="flex sm:justify-end gap-3 mb-4 justify-start">
+                    <a href="https://linkedin.com.br/in/natan-falconi"
+                        class="transition duration-150 border-b-4 border-transparent hover:border-blue-500" target="_blank">
+                        <p class="text-blue-400 font-mono p-2 rounded-md">{{ article?.author?.name }} | {{ new
+                            Date(article?.created_at).toLocaleDateString() }}</p>
+                    </a>
+                </div>
+
+                <button
+                    class="block bg-red-600 hover:opacity-90 rounded-full w-32 h-8 text-gray-100 font-mono font-bold uppercase"
+                    @click="handleClick(article)">
+                    Leia mais >
+                </button>
             </div>
-
-            <button
-                class="block bg-red-600 hover:opacity-90 rounded-full w-32 h-8 text-gray-100 font-mono font-bold uppercase"
-                @click="handleClick(article.id)">
-                Veja mais >
-            </button>
 
         </article>
     </div>
