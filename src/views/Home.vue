@@ -39,8 +39,8 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="sm:w-4/5 mx-auto flex gap-4">
-        <div class="sm:w-2/3 w-10/12 my-10 min-h-screen">
+    <div class="sm:w-4/5 mx-auto sm:flex gap-4">
+        <div class="sm:w-2/3 w-10/12 mx-auto my-10 min-h-screen">
             <article class="my-10" v-for="(article, index) in listArticle" :key="index">
                 <div
                     class="hover:shadow-sm py-8 px-4 hover:bg-slate-700 rounded-md transition duration-150 ease-out hover:ease-in">
@@ -68,7 +68,7 @@ export default defineComponent({
             </article>
         </div>
 
-        <div class="sm:w-1/3 min-h-screen my-10">
+        <div class="sm:w-1/3 w-10/12 min-h-screen my-10 mx-auto">
             <div class="my-10 shadow-sm bg-slate-700 rounded-md py-8 px-4">
                 <h2
                     class="text-4xl font-semibold mb-5 font-mono text-indigo-500 hover:text-blue-400 transition duration-150">
