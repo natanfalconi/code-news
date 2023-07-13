@@ -45,9 +45,9 @@ export default defineComponent({
                 <div
                     class="shadow-sm py-8 px-4 border border-slate-700 hover:bg-slate-700 rounded-md transition duration-150 ease-out hover:ease-in">
 
-                    <h2 class="text-4xl cursor-pointer font-semibold mb-5 font-mono text-indigo-500 hover:text-blue-400 transition duration-150"
+                    <h2 class="sm:text-4xl text-3xl cursor-pointer font-semibold mb-5 font-mono text-indigo-500 hover:text-blue-400 transition duration-150"
                         @click="handleClick(article)">{{ article.title }}</h2>
-                    <p class="mb-5 text-gray-100 font-thin" v-html="article.description.substr(0, 200) + ' ...'"></p>
+                    <p class="mb-5 text-gray-100 font-thin" v-html="article.description.substr(0, 210) + ' ...'"></p>
 
                     <div class="flex sm:justify-end gap-3 mb-4 justify-start">
                         <a href="https://linkedin.com.br/in/natan-falconi"
@@ -71,7 +71,7 @@ export default defineComponent({
         <div class="sm:w-1/3 w-10/12 sm:my-10 mx-auto my-10">
             <div class="shadow-sm bg-slate-700 rounded-md py-8 px-4">
                 <h2 class="text-3xl sm:text-4xl font-semibold mb-5 font-mono text-indigo-500">
-                    Ultimos Posts
+                    Últimos Posts
                 </h2>
 
                 <ul v-for="(article, index) in listArticle" :key="index">
