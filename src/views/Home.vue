@@ -39,9 +39,9 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="sm:w-4/5 mx-auto sm:flex gap-4">
-        <div class="sm:w-2/3 w-10/12 mx-auto my-10 min-h-screen">
-            <article class="my-10" v-for="(article, index) in listArticle" :key="index">
+    <div class="sm:w-4/5 mx-auto flex flex-col-reverse sm:flex-row sm:flex gap-4">
+        <div class="sm:w-2/3 w-10/12 mx-auto sm:my-10 min-h-screen">
+            <article class="mb-10" v-for="(article, index) in listArticle" :key="index">
                 <div
                     class="shadow-sm py-8 px-4 border border-slate-700 hover:bg-slate-700 rounded-md transition duration-150 ease-out hover:ease-in">
 
@@ -68,16 +68,16 @@ export default defineComponent({
             </article>
         </div>
 
-        <div class="sm:w-1/3 w-10/12 my-10 mx-auto">
-            <div class="my-10 shadow-sm bg-slate-700 rounded-md py-8 px-4">
-                <h2 class="text-4xl font-semibold mb-5 font-mono text-indigo-500">
+        <div class="sm:w-1/3 w-10/12 sm:my-10 mx-auto my-10">
+            <div class="shadow-sm bg-slate-700 rounded-md py-8 px-4">
+                <h2 class="text-3xl sm:text-4xl font-semibold mb-5 font-mono text-indigo-500">
                     Ultimos Posts
                 </h2>
 
                 <ul v-for="(article, index) in listArticle" :key="index">
                     <li class="cursor-pointer text-lg text-gray-200 "
                         @click="handleClick(article)">
-                        <p class="transition duration-150 border-b-4 border-transparent hover:border-blue-500">{{ index + 1 }} - {{ article.title }}</p>
+                        <p class="inline-block transition duration-150 border-b-4 border-transparent hover:border-blue-500">{{ index + 1 }} - {{ article.title }}</p>
                     </li>
                 </ul>
             </div>
