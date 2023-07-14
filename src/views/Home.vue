@@ -1,28 +1,39 @@
 <script>
-import { defineComponent, onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, onMounted, ref, watch } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import useApi from "../services/UseApi";
 
 export default defineComponent({
     setup() {
-        const { listJoin } = useApi()
+        const { list, listPagination } = useApi()
+        const route = useRoute();
         const router = useRouter()
-
+        const currentPage = ref(Number(route.query.page) || 1);
+        const itemsPerPage = 3;
         const listArticle = ref([])
 
         const getListArticle = async () => {
             try {
-                listArticle.value = await listJoin('posts', 'author');
+                listArticle.value = await listPagination('posts', 'author', currentPage.value, itemsPerPage);
             } catch (error) {
                 console.error(error);
             }
-        }
+        };
+
+        const handlePageChange = (page) => {
+            router.push({ query: { ...route.query, page: page.toString() } });
+        };
 
         const handleClick = async (article) => {
             router.push({
                 path: `/news/${article.title.replace(/\s+/g, '-').toLowerCase()}`, query: { id: article.id }
             })
         }
+
+        watch(() => route.query.page, () => {
+            currentPage.value = Number(route.query.page) || 1;
+            getListArticle();
+        });
 
         onMounted(() => {
             getListArticle()
@@ -31,7 +42,9 @@ export default defineComponent({
 
         return {
             listArticle,
-            handleClick
+            handleClick,
+            currentPage,
+            handlePageChange
         }
     },
 
@@ -65,8 +78,21 @@ export default defineComponent({
                         Leia mais >
                     </button>
                 </div>
-
             </article>
+
+            <div class="flex items-center justify-center my-4 text-blue-500">
+                <button class=" text-3xl font-bold py-2 px-4 rounded-l" :disabled="currentPage === 1"
+                    @click="handlePageChange(currentPage - 1)">
+                    &lt
+                </button>
+                <div class="px-4 py-2 text-xl">
+                    Página {{ currentPage }}
+                </div>
+                <button class=" text-3xl font-bold py-2 px-4 rounded-r"
+                    :disabled="currentPage * itemsPerPage >= listArticle.length" @click="handlePageChange(currentPage + 1)">
+                    >
+                </button>
+            </div>
         </div>
 
         <div class="sm:w-1/3 w-10/12 sm:my-10 mx-auto my-10">
@@ -76,10 +102,10 @@ export default defineComponent({
                 </h2>
 
                 <ul v-for="(article, index) in listArticle" :key="index">
-                    <li class="cursor-pointer text-lg text-gray-200 flex gap-1"
-                        @click="handleClick(article)">
+                    <li class="cursor-pointer text-lg text-gray-200 flex gap-1" @click="handleClick(article)">
                         <p>{{ index + 1 }}.</p>
-                        <p class="inline-block transition duration-150 hover:underline hover:text-blue-500">{{ article.title }}</p>
+                        <p class="inline-block transition duration-150 hover:underline hover:text-blue-500">{{ article.title
+                        }}</p>
                     </li>
                 </ul>
             </div>

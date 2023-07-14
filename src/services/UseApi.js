@@ -15,6 +15,22 @@ export default function useApi() {
         return data
     }
 
+    const listPagination = async (table, joinTable, page, perPage) => {
+        const offset = (page - 1) * perPage;
+        const { data, error } = await supabase
+            .from(table)
+            .select(`
+             *, 
+             ${joinTable}(
+                 *
+             )`)
+            .order('id', { ascending: false })
+            .range(offset, offset + perPage - 1);
+        if (error) throw error;
+        return data;
+    };
+
+
     // const listPublic = async (table, userId) => {
     //     const { data, error } = await supabase
     //         .from(table)
@@ -119,6 +135,7 @@ export default function useApi() {
         getById,
         listJoin,
         getByIdJoin,
+        listPagination,
         // post,
         // update,
         // remove,
