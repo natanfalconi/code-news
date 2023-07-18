@@ -9,7 +9,7 @@ export default defineComponent({
         const route = useRoute();
         const router = useRouter()
         const currentPage = ref(Number(route.query.page) || 1);
-        const itemsPerPage = 3;
+        const itemsPerPage = 5;
         const listArticle = ref([])
 
         const getListArticle = async () => {
@@ -63,13 +63,12 @@ export default defineComponent({
                     <p class="mb-5 text-gray-100 font-thin" v-html="article.description.substr(0, 210) + ' ...'"></p>
 
                     <div class="flex sm:justify-end gap-3 mb-4 justify-start">
-                        <a :href="article?.author?.social_link"
-                            class="transition duration-150 border-b-4 border-transparent hover:border-blue-500"
-                            target="_blank">
+                        <RouterLink to="/profile"
+                            class="transition duration-150 border-b-4 border-transparent hover:border-blue-500">
                             <p class="text-blue-400 font-mono rounded-md sm:text-md text-sm">{{ article?.author?.name }} |
                                 {{ new
                                     Date(article?.created_at).toLocaleDateString() }}</p>
-                        </a>
+                        </RouterLink>
                     </div>
 
                     <button
